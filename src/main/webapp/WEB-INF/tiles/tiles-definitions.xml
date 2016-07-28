@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+  
+    <definition name="temp" template="/WEB-INF/template/default/tmp.jsp">
+        <put-attribute name="head" value="/WEB-INF/template/default/head.jsp" />
+        <put-attribute name="side-bar" value="/WEB-INF/template/default/side-bar.jsp" />
+        <put-attribute name="navbar" value="/WEB-INF/template/default/navbar.jsp" />
+        <put-attribute name="features1" value="/WEB-INF/template/default/features1.jsp" />
+        <put-attribute name="content" value="/WEB-INF/template/default/content.jsp" />
+        <put-attribute name="bottom_widget" value="/WEB-INF/template/default/bottom_widget.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/template/default/footer.jsp" />
+        <put-attribute name="js" value="/WEB-INF/template/default/js.jsp" />
+        <put-attribute name="banner" value="/WEB-INF/template/default/banner.jsp" />
+    </definition>
+    
+</tiles-definitions>
