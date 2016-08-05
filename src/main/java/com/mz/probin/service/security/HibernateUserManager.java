@@ -41,6 +41,7 @@ public class HibernateUserManager extends AbstractHibernateDao implements UserMa
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
+    @Override
     public void createOrEditUser(AppUser user) {
 
         //Save new user

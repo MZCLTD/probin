@@ -10,89 +10,47 @@
 
 <div class="container jumbotron">
 
-<form:form modelAttribute="ua" class="form-horizontal">
+<form:form modelAttribute="au" class="form-horizontal">
 
  <legend>Create your profile</legend>
-   
-  <div class="form-group">
-     <label for="inputEmail" class="col-lg-2 control-label">Title</label>
-      <div class="col-lg-10">
-        <form:select path="titleId">
-			<form:option value="-1" label="What are you addressed as? Please select" /> 
-			<form:option value="1" label="Mr" />
-			<form:option value="2" label="Mrs" />
-				<%-- <c:forEach items="${titleList}" var = "item"> 
-            <form:option value="${item.id}" >${item.title}</form:option> 
-                </c:forEach> --%>
-		</form:select>
-
-      </div>
-    </div> 
-    
-    <div class="form-group">
-     <label for="inputEmail" class="col-lg-2 control-label">First name</label>
-      <div class="col-lg-10">
-        <form:input class="form-control" path="firstName" placeholder="First name" type="text" />
-      </div>
-    </div>
-    
-    <div class="form-group">
-     <label for="inputEmail" class="col-lg-2 control-label">Gender</label>
-      <div class="col-lg-10">
-        <form:select path="genderId">
-			<form:option value="-1" label="Male or Female? Please select" />
-			<form:option value="1" label="Male" /> 
-			<form:option value="2" label="Female" /> 
-				<%-- <c:forEach items="${genderList}" var = "item"> 
-            		<form:option value="${item.id}" >${item.gender}</form:option> 
-                </c:forEach> --%>
-		</form:select>
-      </div>
-    </div>
-    
-    <div class="form-group">
+ 
+ 
+ 	<c:if test="${ au.message != null }">
+ 	<div class="alert alert-dismissible alert-danger">
+ 		${ au.message }
+ 		</div>
+ 	</c:if>
+ 
+ 	<div class="form-group">
      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
       <div class="col-lg-10">
-        <form:input class="form-control" path="email" placeholder="Email" type="text" />
-      </div>
-    </div>
-    
-    <div class="form-group">
-     <label for="inputEmail" class="col-lg-2 control-label">Telephone Number</label>
-      <div class="col-lg-10">
-        <form:input class="form-control" path="telephoneNumber" placeholder="Telephone Number" type="text" />
-      </div>
-    </div>
-    
-    <div class="form-group">
-     <label for="inputEmail" class="col-lg-2 control-label">Contact Address</label>
-      <div class="col-lg-10">
-        <form:textarea class="form-control" path="contactAddress" placeholder="Contact Address" type="text" />
-      </div>
-    </div>
-    
-    <div class="form-group">
-     <label for="inputEmail" class="col-lg-2 control-label">Username</label>
-      <div class="col-lg-10">
-        <form:textarea class="form-control" path="username" placeholder="Username" type="text" />
+        <form:input class="form-control" path="username" placeholder="Email" type="text" />
       </div>
     </div>
     
     <div class="form-group">
      <label for="inputEmail" class="col-lg-2 control-label">Password</label>
       <div class="col-lg-10">
-        <form:password class="form-control" path="password" placeholder="Password"  />
+        <form:input class="form-control" path="password"  placeholder="Enter Your Password" type="password" />
       </div>
     </div>
     
-    <div class="col-lg-10">
+    <div class="form-group">
+     <label for="inputEmail" class="col-lg-2 control-label">Confirm Password</label>
+      <div class="col-lg-10">
+        <form:input class="form-control" path="rePassword" placeholder="Confirm Password" type="password" />
+      </div>
+    </div>
+    
+    <div class="form-group">
+    <label for="inputEmail" class="col-lg-2 control-label">&nbsp;&nbsp;</label>
+    	<div class="col-lg-10">
         <input type="submit" name = "submit" value="Create account" class="btn btn-primary"/>
-   		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
-      </div>  
+        <!-- <input type="submit" name = "submit" value="Close" class="btn btn-primary"/> -->
+   		</div>
+   		</div>
     
 </form:form>
-
-
 </div>
 
 </tiles:putAttribute>

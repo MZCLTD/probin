@@ -61,7 +61,6 @@
 										<thead>
 											<tr>
 												<th>S/N</th>
-												<th>USERNAME</th>
 												<th>TRANS.ID</th>
 												<th>DATE/TIME</th>
 												<!-- <th>STATUS</th> -->
@@ -75,7 +74,6 @@
 											<c:forEach items="${transactionsList}" var="item">
 												<tr>
 													<td><c:out value="${item.serialNumber}" /></td>
-													<td><c:out value="${item.username}" /></td>
 													<td><c:out value="${item.transactionId}" /></td>
 													<td><c:out value="${item.transactionDateTime}" /></td>
 													<%-- <td><c:out value="${item.status}" /></td> --%>

@@ -1,13 +1,14 @@
 package com.mz.probin.util;
 
-import java.time.LocalTime;
+import java.time.LocalDate;
 
 public class TimeUtils {
 	
 	public static String getTodaysDate(){
-		LocalTime localTime = LocalTime.now();
-		System.out.println("Local Time :"+localTime);
-		return localTime.toString();
+		LocalDate localDate = LocalDate.now();
+		
+		System.out.println("Local Time :"+localDate);
+		return localDate.toString();
 		
 	}
 

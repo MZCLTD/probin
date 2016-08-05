@@ -16,13 +16,14 @@
 <tiles:insertDefinition name="temp">
 
 
+
 <tiles:putAttribute name="navbar">
 
 	<div class="navbar navbar-default navbar-fixed-top">
 	  <div class="container">
 	    <a class="navbar-brand" href="welcome"><img src="images/probin-logo.png" alt="logo" ></a>
 	    <ul class="nav navbar-nav">
-	    <li><a class="active" href="${context}/account">Home</a></li>
+	    <li><a href="${context}/account">Home</a></li>
 	     <li><a href="about-probin">About Probin</a></li> 
 	     <li><a href="how-it-works">How it works</a></li>
 	      
@@ -44,7 +45,7 @@
 	  </div>
 	</div>
 
-</tiles:putAttribute>  
+</tiles:putAttribute> 
 
 <tiles:putAttribute name="side-bar">&nbsp;</tiles:putAttribute> 
 
@@ -54,19 +55,44 @@
 
 <div class="jumbotron">
 
-	<p> Application ID: ${ ga.applicationId } </p>
-	<p> Date of application : ${ ga.dateOfApplication } </p>
-	<p> Status : ${ ga.status } </p>
-	
-	<p> Application for grant is completed! You can check your transaction history from time to time to check the status of your application, 
-	Please save your application ID, it will be used to track the status of your application ... Thanks </p>
-	
-	<p><a href="javascript:window.print()">Print this reference</a></p>
 
+<form:form modelAttribute="ap" class="form-horizontal" enctype="multipart/form-data">
+  <fieldset>
+    <legend>Application for Probate</legend>
+    <div class="form-group">
+      <!-- <label class="col-lg-2 control-label">Customer Name</label> -->
+      <div class="col-lg-10">
+        <form:input class="form-control" path="nameOfApplicat" placeholder="Name of applicant" type="text" />
+      </div>
+    </div>
+    
+    <div class="form-group">
+    
+    	<div class="col-lg-10">
+            Upload application form &nbsp;  <form:input cssClass="form-control" type="file" path="multipartFile" />
+    	</div>
+    
+    </div>
+    
+    <p>
+    <button type="submit" Class="btn btn-primary ">Upload Application form</button>
+    <a Class="btn btn-primary " href="welcome">Cancel</a>
+    </p>
+    <!-- <div class="form-group">
+      <div class="col-lg-2 control-label">
+        <button type="reset" class="btn btn-default">Cancel</button> 
+        <button type="submit" class="btn btn-default ">Submit</button>
+      </div>
+    </div> -->
+  </fieldset>
+</form:form>
+  
 </div>
+
 
 </div>
 
 </tiles:putAttribute>
 
 </tiles:insertDefinition>
+

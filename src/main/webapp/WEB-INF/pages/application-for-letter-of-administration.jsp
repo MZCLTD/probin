@@ -54,9 +54,19 @@
 
 <div class="jumbotron">
 
+<h4>IN THE HIGH COURT OF LAGOS, NIGERIA</h4>
+
+<p>PROBATE REGISTRY</p>
+
 <form:form modelAttribute="ga" class="form-horizontal" >
 
- <legend>Application For Grant</legend>
+ <legend>Application for letter of administration (WITHOUT WILL)</legend>
+ 
+ <%-- <div class="form-group">
+      <div class="col-lg-10">
+        <form:input path="title" type="hidden" />
+      </div>
+    </div> --%>
     
     <div class="form-group">
       <div class="col-lg-10">
@@ -138,7 +148,7 @@
         <!-- <input type="submit" name = "submit" value="Create account" class="btn btn-primary"/> -->
         <div>
         	<input class="btn btn-primary" id="start-button" type="submit" value="Continue"/>
-        	<input class="btn btn-primary"  type="submit" value="Close"/>
+        	<a class="btn btn-primary" href="welcome">Close</a>
         </div>
    		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
    		

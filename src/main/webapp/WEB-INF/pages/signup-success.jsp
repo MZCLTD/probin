@@ -54,14 +54,10 @@
 
 <div class="jumbotron">
 
-	<p> Application ID: ${ ga.applicationId } </p>
-	<p> Date of application : ${ ga.dateOfApplication } </p>
-	<p> Status : ${ ga.status } </p>
-	
-	<p> Application for grant is completed! You can check your transaction history from time to time to check the status of your application, 
-	Please save your application ID, it will be used to track the status of your application ... Thanks </p>
-	
-	<p><a href="javascript:window.print()">Print this reference</a></p>
+	<div class="alert alert-dismissible alert-info">
+	  <button type="button" class="close" data-dismiss="alert">&times;</button>
+	  <strong>Congratulations!</strong> Your account has been created <a href="login" class="alert-link">You may now proceed to login to your account </a>.
+	</div>
 
 </div>
 

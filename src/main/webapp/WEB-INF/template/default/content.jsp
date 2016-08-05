@@ -50,9 +50,8 @@
   <blockquote class="blockquote">
   <p>When someone dies, you'll need to get the legal right to deal with their property, money and possessions (their 'estate').</p>
   
-  <p>With this portal, you may be able to apply for a 'grant of representation' - known as 'probate'.
-	You can apply yourself. </p>
-  <p><a class="btn btn-primary btn-lg">Learn how to</a></p>
+  <p> With this PORTAL, you will be able to apply for your <i><b>letter of administration</b>, <b>Probate</b> <b>and their confirmations</b> </i></p>
+  <!-- <p><a class="btn btn-primary btn-lg">Learn how to</a></p> -->
   <!-- <small>Someone famous in <cite title="Source Title">Source Title</cite></small> -->
 </blockquote>
   

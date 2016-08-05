@@ -60,11 +60,11 @@
     
     <div class="form-group well">
     
-    <div class="form-group">
+    <%-- <div class="form-group">
       <div class="col-lg-10">
         <form:input class="form-control" path="title" placeholder="Application Without WILL Form" type="hidden" />
       </div>
-    </div>
+    </div> --%>
     
     <div class="form-group">
       <div class="col-lg-10">
@@ -96,10 +96,10 @@
       </div>
     </div>
     
-    	<i><p>(5) UPLOAD FORM "R"</p></i>
+    	<i><p>(5) UPLOAD FORM "R" (Particulars of realty)</p></i>
     
     	<div class="col-lg-10">
-           inventory form   <form:input cssClass="form-control" type="file" path="multipartFile" /> <br/>
+           FORM "R" (Particulars of realty)  <form:input cssClass="form-control" type="file" path="multipartFile" /> <br/>
     	</div>
     	
     </div>

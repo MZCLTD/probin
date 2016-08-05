@@ -1,9 +1,28 @@
 package com.mz.probin.web.controllers;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.mz.probin.dao.GenericDao;
+import com.mz.probin.entities.security.AppUser;
+import com.mz.probin.entities.security.AppUserRole;
+import com.mz.probin.service.security.UserManager;
 
 @Controller
-public class SignupController {/*
+public class SignupController {
+	
+	@Autowired
+	GenericDao genericDao;
 	
 	@Autowired
 	UserManager userManager;
@@ -12,63 +31,52 @@ public class SignupController {/*
 	public String signup(Model model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception{
 		
-		UserAccount ua = new UserAccount();
-		Title title = new Title();
-		Gender gender = new Gender();
+		String message = ServletRequestUtils.getStringParameter(request, "mess");
 		
-		*//*title.setTitleId(1);
-		title.setTitle("Mr");
-		gdao.saveObject(title);
+		AppUser appUser = new AppUser();
+		appUser.setMessage(message);
 		
-		gender.setGenderId(1);
-		gender.setGender("Male");
-		gdao.saveObject(gender);*//*
+		model.addAttribute("au", appUser);
 		
-		List<Title> titleList = gdao.getAll(Title.class);
-		List<Gender> genderList = gdao.getAll(Gender.class);
-		
-		ua.setTitleList(titleList);
-		ua.setGenderList(genderList);
-		
-		System.out.println("Title List Size :"+ua.getTitleList().size());
-		System.out.println("Gender List Size :"+ua.getGenderList().size());
-		
-		ua.setTitleList(titleList);
-		ua.setGenderList(genderList);
-		
-		model.addAttribute("ua", ua);
-		
-        return "signup";
+		return "signup";
 		
 	}
 	
-	@ResponseBody
+	
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	public String processSignup(@ModelAttribute UserAccount ua, Model model) throws Exception {
+	public String processSignup(@ModelAttribute AppUser au, Model model) throws Exception {
 		
-		*//*AuthenticationUtils auth = new AuthenticationUtils();
-		String token = auth.getAuthenticationToken(Constants.USERNAME, Constants.PASSWORD, Constants.VAULTGUID);*//*
+		// lets make sure the username is unique
+		List<AppUser> appuserList = genericDao.getEntityListByStringValue("username", au.getUsername(), AppUser.class);
 		
-		// Save user record and send email for confirmation
-		gdao.saveObject(ua);
+		if(appuserList.size() > 0 ){
+			// user exists do
+			au.setMessage("User already exists!");
+			return "redirect:signup?mess="+au.getMessage();
+		}
 		
-		// create user account
-		Users users = new Users();
-		users.setEnabled(1);
-		users.setPassword(ua.getPassword());
-		users.setUsername(ua.getUsername());
+		if(!au.getPassword().equals(au.getRePassword())){
+			au.setMessage("Password dont match!");
+			return "redirect:signup?mess="+au.getMessage();
+		}
 		
-		gdao.saveObject(users);
 		
-		// Create user role
-		UserRoles ur = new UserRoles();
-		ur.setUsername(ua.getUsername());
-		ur.setRole(Constants.USER_ROLE);
+		AppUserRole role = genericDao.getEntityById(AppUserRole.class, 1L);
 		
-		gdao.saveObject(ur);
+		// create the user account
+		au.setRole(role);
+		au.setEnabled(true);
+		genericDao.persist(au);
 		
-        return "signup-success";
+		// save user password
+		userManager.createOrEditUser(au);
+		
+		// create user role
+		
+		
+		
+		return "redirect:signup-success";
 		
 	}
 	
-*/}
+}

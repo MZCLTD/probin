@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties
-public class GrantApplication {
+public class ApplicationForLetterOfAdministration {
 	
 	private String title;
 	private String nameOfOwnerOfEstate;

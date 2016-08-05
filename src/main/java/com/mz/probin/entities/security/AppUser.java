@@ -12,11 +12,17 @@ import java.util.Set;
 @Table(name = "APP_USERS")
 public class AppUser implements UserDetails {
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @Column(name = "USER_ID", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+	// This should be your email address
     @Column(name = "USERNAME", nullable = false, unique = true, length = 100)
     private String username;
 
@@ -30,6 +36,13 @@ public class AppUser implements UserDetails {
     //This isn't mapped  for security reasons.
     @Transient
     private String password;
+    
+    @Transient
+    private String rePassword;
+    
+    @Transient
+    private String message;
+    
 
     @Transient
     private Set<? extends GrantedAuthority> authorities;
@@ -100,4 +113,22 @@ public class AppUser implements UserDetails {
     public void setRole(AppUserRole role) {
         this.role = role;
     }
+
+	public String getRePassword() {
+		return rePassword;
+	}
+
+	public void setRePassword(String rePassword) {
+		this.rePassword = rePassword;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+
 }

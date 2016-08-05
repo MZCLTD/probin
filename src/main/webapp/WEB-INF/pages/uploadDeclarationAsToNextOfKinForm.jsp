@@ -60,11 +60,11 @@
     
     <div class="form-group well">
     
-    <div class="form-group">
+    <%-- <div class="form-group">
       <div class="col-lg-10">
         <form:input class="form-control" path="title" placeholder="Application Without WILL Form" type="hidden" />
       </div>
-    </div>
+    </div> --%>
     
     <div class="form-group">
       <div class="col-lg-10">
@@ -99,7 +99,7 @@
     	<i><p>UPLOAD DECLARATION AS TO NEXT OF KIN FORM</p></i>
     
     	<div class="col-lg-10">
-           Declaration as to next of kin form   <form:input cssClass="form-control" type="file" path="multipartFile" /> <br/>
+           DECLARATION AS TO NEXT OF KIN FORM   <form:input cssClass="form-control" type="file" path="multipartFile" /> <br/>
     	</div>
     	
     </div>

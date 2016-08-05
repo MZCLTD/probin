@@ -54,14 +54,10 @@
 
 <div class="jumbotron">
 
-	<p> Application ID: ${ ga.applicationId } </p>
-	<p> Date of application : ${ ga.dateOfApplication } </p>
-	<p> Status : ${ ga.status } </p>
+	<p>Your application for PROBATE has been done successfully. Your application Id is <b>${ap.applicationId}</b>, 
+	Please keep this number, it will be used to track the status of your application </p>
 	
-	<p> Application for grant is completed! You can check your transaction history from time to time to check the status of your application, 
-	Please save your application ID, it will be used to track the status of your application ... Thanks </p>
-	
-	<p><a href="javascript:window.print()">Print this reference</a></p>
+	<p><a href="javascript:window.print()">Print this confirmation</a></p>
 
 </div>
 

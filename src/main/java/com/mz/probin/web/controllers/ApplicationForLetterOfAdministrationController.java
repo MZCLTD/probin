@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.mz.probin.constants.Constants;
 import com.mz.probin.dao.GenericDao;
-import com.mz.probin.entities.GrantApplication;
+import com.mz.probin.entities.ApplicationForLetterOfAdministration;
 import com.mz.probin.entities.Transactionz;
 import com.mz.probin.mfiles.classes.Lookup;
 import com.mz.probin.mfiles.classes.MFileDataType;
@@ -33,7 +33,7 @@ import com.mz.probin.util.TimeUtils;
 
 @Controller
 //@RequestMapping(value = "/applicationForGrant")
-public class ApplicationForGrantsController {
+public class ApplicationForLetterOfAdministrationController {
 	
 	@Autowired
     private MFilesHttpComponentsRestTemplate mfilesHttpComponentsRestTemplate;
@@ -41,28 +41,33 @@ public class ApplicationForGrantsController {
 	@Autowired
 	private GenericDao genericDao;
 	
-	@RequestMapping(value="applicationForGrant", method = RequestMethod.GET)
+	@RequestMapping(value="/applicationForLetterOfAdministration", method = RequestMethod.GET)
 	public String signup(Model model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception{
 		
-		GrantApplication ga = new GrantApplication();
+		ApplicationForLetterOfAdministration ga = new ApplicationForLetterOfAdministration();
 		
 		model.addAttribute("ga", ga);
 		
-		return "application-for-grant-form";
+		return "application-for-letter-of-administration";
 		
 }
 	
 	//@ResponseBody
-    @RequestMapping(value = "/applicationForGrant", method = RequestMethod.POST)
-    public String uploadFile(@ModelAttribute GrantApplication ga) throws Exception {
+    @RequestMapping(value = "/applicationForLetterOfAdministration", method = RequestMethod.POST)
+    public String uploadFile(@ModelAttribute ApplicationForLetterOfAdministration ga) throws Exception {
+    	
+    	Random rand = new Random();
+    	int  id = rand.nextInt(1000);
+    	
+    	String titlez = id+"-"+TimeUtils.getTodaysDate();
     	
         String nameOfOwnerOfEstate = ga.getNameOfOwnerOfEstate();
         String occupationOfTheDesased = ga.getOccupationOfTheDesased();
         String relationshipWithTheDeasesed = ga.getRelationshipWithTheDeasesed();
         String valueOfTheProperties = ga.getValueOfTheProperties();
         String jurisdictionOfWhichHighCourt = ga.getJurisdictionOfWhichHighCourt();
-        String title = "ADMINISTRATION OF BOND WITHOUT WILL";
+        String title = nameOfOwnerOfEstate+"-"+titlez;
         
         // TODO Create an object in MFiles for this case
 		return "redirect:uploadAdministrationWithoutWillForm?"
@@ -71,12 +76,12 @@ public class ApplicationForGrantsController {
  }
     
     
-    // 1 START upload administration without WILL form
+    // 1 START upload administration of bond without WILL form
 	@RequestMapping(value="/uploadAdministrationWithoutWillForm", method = RequestMethod.GET)
 	public String uploadAdministrationWithoutWillForm(Model model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception{
 		
-		GrantApplication ga = new GrantApplication();
+		ApplicationForLetterOfAdministration ga = new ApplicationForLetterOfAdministration();
 		
 		String nameOfOwnerOfEstate = ServletRequestUtils.getStringParameter(request, "nooe");
 		String occupatiuonOfDeseased = ServletRequestUtils.getStringParameter(request, "ood");
@@ -90,9 +95,10 @@ public class ApplicationForGrantsController {
 		ga.setRelationshipWithTheDeasesed(relationshipWithDeseased);
 		ga.setValueOfTheProperties(valueOfProperties);
 		ga.setJurisdictionOfWhichHighCourt(jurisdictionOfHighCourt);
-        ga.setTitle(title+" / "+ga.getNameOfOwnerOfEstate());
+        ga.setTitle(title);
         
         System.err.println("Name of owner of estate:"+ga.getNameOfOwnerOfEstate());
+        System.err.println("Title:"+ga.getTitle());
 		
 		model.addAttribute("ga", ga);
 		
@@ -101,16 +107,17 @@ public class ApplicationForGrantsController {
     }
 	
 	@RequestMapping(value = "/uploadAdministrationWithoutWillForm", method = RequestMethod.POST)
-    public String uploadAdministrationWithoutWillForm( @ModelAttribute GrantApplication ga, MultipartHttpServletRequest request ) throws Exception {
+    public String uploadAdministrationWithoutWillForm( @ModelAttribute ApplicationForLetterOfAdministration ga, MultipartHttpServletRequest request ) throws Exception {
 		
         String nameOfOwnerOfEstate = ga.getNameOfOwnerOfEstate();
         String occupationOfTheDesased = ga.getOccupationOfTheDesased();
         String relationshipWithTheDeasesed = ga.getRelationshipWithTheDeasesed();
         String valueOfTheProperties = ga.getValueOfTheProperties();
         String jurisdictionOfWhichHighCourt = ga.getJurisdictionOfWhichHighCourt();
-        String title = "DECLARATION AS TO NEXT OF KIN FORM";
+        String title = ga.getTitle();
         
         System.err.println("Name of owner of estate:"+ga.getNameOfOwnerOfEstate());
+        System.err.println("Title:"+ga.getTitle());
         
         uploadfile( ga, request );
         
@@ -128,7 +135,7 @@ public class ApplicationForGrantsController {
 	public String uploadDeclarationAsToNextOfKinForm(Model model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception{
 		
-		GrantApplication ga = new GrantApplication();
+		ApplicationForLetterOfAdministration ga = new ApplicationForLetterOfAdministration();
 		
 		String nameOfOwnerOfEstate = ServletRequestUtils.getStringParameter(request, "nooe");
 		String occupatiuonOfDeseased = ServletRequestUtils.getStringParameter(request, "ood");
@@ -142,7 +149,7 @@ public class ApplicationForGrantsController {
 		ga.setRelationshipWithTheDeasesed(relationshipWithDeseased);
 		ga.setValueOfTheProperties(valueOfProperties);
 		ga.setJurisdictionOfWhichHighCourt(jurisdictionOfHighCourt);
-        ga.setTitle(title+" / "+ga.getNameOfOwnerOfEstate());
+        ga.setTitle(title);
 		
 		model.addAttribute("ga", ga);
 		
@@ -152,16 +159,17 @@ public class ApplicationForGrantsController {
 	
 	
 	@RequestMapping(value = "/uploadDeclarationAsToNextOfKinForm", method = RequestMethod.POST)
-    public String uploadDeclarationAsToNextOfKinForm( @ModelAttribute GrantApplication ga, MultipartHttpServletRequest request ) throws Exception {
+    public String uploadDeclarationAsToNextOfKinForm( @ModelAttribute ApplicationForLetterOfAdministration ga, MultipartHttpServletRequest request ) throws Exception {
 		
         String nameOfOwnerOfEstate = ga.getNameOfOwnerOfEstate();
         String occupationOfTheDesased = ga.getOccupationOfTheDesased();
         String relationshipWithTheDeasesed = ga.getRelationshipWithTheDeasesed();
         String valueOfTheProperties = ga.getValueOfTheProperties();
         String jurisdictionOfWhichHighCourt = ga.getJurisdictionOfWhichHighCourt();
-        String title = "INVENTORY FORM";
+        String title = ga.getTitle();
         
         System.err.println("Name of owner of estate:"+ga.getNameOfOwnerOfEstate());
+        System.err.println("Title:"+ga.getTitle());
         
         uploadfile( ga, request );
         
@@ -179,7 +187,7 @@ public class ApplicationForGrantsController {
 		public String uploadInventoryForm(Model model, HttpServletRequest request,
 				HttpServletResponse response) throws Exception{
 			
-			GrantApplication ga = new GrantApplication();
+			ApplicationForLetterOfAdministration ga = new ApplicationForLetterOfAdministration();
 			
 			String nameOfOwnerOfEstate = ServletRequestUtils.getStringParameter(request, "nooe");
 			String occupatiuonOfDeseased = ServletRequestUtils.getStringParameter(request, "ood");
@@ -193,7 +201,7 @@ public class ApplicationForGrantsController {
 			ga.setRelationshipWithTheDeasesed(relationshipWithDeseased);
 			ga.setValueOfTheProperties(valueOfProperties);
 			ga.setJurisdictionOfWhichHighCourt(jurisdictionOfHighCourt);
-	        ga.setTitle(title+" / "+ga.getNameOfOwnerOfEstate());
+	        ga.setTitle(title);
 	        
 			
 			model.addAttribute("ga", ga);
@@ -204,14 +212,14 @@ public class ApplicationForGrantsController {
 		
 		
 		@RequestMapping(value = "/uploadInventoryForm", method = RequestMethod.POST)
-	    public String uploadInventoryForm( @ModelAttribute GrantApplication ga, MultipartHttpServletRequest request ) throws Exception {
+	    public String uploadInventoryForm( @ModelAttribute ApplicationForLetterOfAdministration ga, MultipartHttpServletRequest request ) throws Exception {
 			
 	        String nameOfOwnerOfEstate = ga.getNameOfOwnerOfEstate();
 	        String occupationOfTheDesased = ga.getOccupationOfTheDesased();
 	        String relationshipWithTheDeasesed = ga.getRelationshipWithTheDeasesed();
 	        String valueOfTheProperties = ga.getValueOfTheProperties();
 	        String jurisdictionOfWhichHighCourt = ga.getJurisdictionOfWhichHighCourt();
-	        String title = "SCHEDULE OF DEBT";
+	        String title = ga.getTitle();
 	        
 	        
 	        uploadfile( ga, request );
@@ -228,7 +236,7 @@ public class ApplicationForGrantsController {
 				public String uploadSchedulOfDebtAndFuneralExpensesForm(Model model, HttpServletRequest request,
 						HttpServletResponse response) throws Exception{
 					
-					GrantApplication ga = new GrantApplication();
+					ApplicationForLetterOfAdministration ga = new ApplicationForLetterOfAdministration();
 					
 					String nameOfOwnerOfEstate = ServletRequestUtils.getStringParameter(request, "nooe");
 					String occupatiuonOfDeseased = ServletRequestUtils.getStringParameter(request, "ood");
@@ -242,7 +250,7 @@ public class ApplicationForGrantsController {
 					ga.setRelationshipWithTheDeasesed(relationshipWithDeseased);
 					ga.setValueOfTheProperties(valueOfProperties);
 					ga.setJurisdictionOfWhichHighCourt(jurisdictionOfHighCourt);
-			        ga.setTitle(title+" / "+ga.getNameOfOwnerOfEstate());
+			        ga.setTitle(title);
 			        
 					
 					model.addAttribute("ga", ga);
@@ -253,14 +261,14 @@ public class ApplicationForGrantsController {
 				
 				
 				@RequestMapping(value = "/uploadScheduleOfDebtAndFuneralExpensesForm", method = RequestMethod.POST)
-			    public String uploadSchedulOfDebtAndFuneralExpensesForm( @ModelAttribute GrantApplication ga, MultipartHttpServletRequest request ) throws Exception {
+			    public String uploadSchedulOfDebtAndFuneralExpensesForm( @ModelAttribute ApplicationForLetterOfAdministration ga, MultipartHttpServletRequest request ) throws Exception {
 					
 			        String nameOfOwnerOfEstate = ga.getNameOfOwnerOfEstate();
 			        String occupationOfTheDesased = ga.getOccupationOfTheDesased();
 			        String relationshipWithTheDeasesed = ga.getRelationshipWithTheDeasesed();
 			        String valueOfTheProperties = ga.getValueOfTheProperties();
 			        String jurisdictionOfWhichHighCourt = ga.getJurisdictionOfWhichHighCourt();
-			        String title = "FORM R - PARTICULARS OF REALTY";
+			        String title = ga.getTitle();
 			        
 			        
 			        uploadfile( ga, request );
@@ -278,7 +286,7 @@ public class ApplicationForGrantsController {
 				public String uploadFormR(Model model, HttpServletRequest request,
 						HttpServletResponse response) throws Exception{
 					
-					GrantApplication ga = new GrantApplication();
+					ApplicationForLetterOfAdministration ga = new ApplicationForLetterOfAdministration();
 					
 					String nameOfOwnerOfEstate = ServletRequestUtils.getStringParameter(request, "nooe");
 					String occupatiuonOfDeseased = ServletRequestUtils.getStringParameter(request, "ood");
@@ -292,7 +300,7 @@ public class ApplicationForGrantsController {
 					ga.setRelationshipWithTheDeasesed(relationshipWithDeseased);
 					ga.setValueOfTheProperties(valueOfProperties);
 					ga.setJurisdictionOfWhichHighCourt(jurisdictionOfHighCourt);
-			        ga.setTitle(title+" / "+ga.getNameOfOwnerOfEstate());
+			        ga.setTitle(title);
 			        
 					
 					model.addAttribute("ga", ga);
@@ -303,28 +311,31 @@ public class ApplicationForGrantsController {
 				
 				
 				@RequestMapping(value = "/formR", method = RequestMethod.POST)
-			    public String uploadFormR( @ModelAttribute GrantApplication ga, Authentication authentication, MultipartHttpServletRequest request ) throws Exception {
+			    public String uploadFormR( @ModelAttribute ApplicationForLetterOfAdministration ga, Authentication authentication, MultipartHttpServletRequest request ) throws Exception {
 					
-					Random rand = new Random();
-			    	int  id = rand.nextInt(1000000000) + 1;
+					System.err.println("Title at form R: "+ga.getTitle());
 					
 					uploadfile( ga, request );
 					
-					ga.setTitle("AFG/"+ga.getNameOfOwnerOfEstate()+TimeUtils.getTodaysDate());
-			        ga.setStatus("PENDING");
-			        ga.setApplicationId("AFG/"+id+TimeUtils.getTodaysDate());
+					ga.setTitle(ga.getTitle());
+			        ga.setStatus("APPLICATION SUBMITTED");
+			        ga.setApplicationId(ga.getTitle());
 			        ga.setDateOfApplication(TimeUtils.getTodaysDate());
 			        ga.setFullnameOfApplicant(ga.getNameOfOwnerOfEstate());
 			        
-			        createIndexObjectForGrantApplication( ga );
+			        ObjectVersion objectVersion = createIndexObjectForGrantApplication( ga );
+			        
+			        /*System.err.println("Object Class: "+objectVersion.getObjectClass());
+			        System.err.println("Object Id/DisplayId used: "+objectVersion.getDisplayId());
+			        System.err.println("Object version: "+objectVersion.getObjVer().getVersion());*/
 			        
 			        Transactionz transactions = new Transactionz();
 			        transactions.setTransactionDateTime(TimeUtils.getTodaysDate());
 			        transactions.setTransactionId(ga.getApplicationId());
 			        transactions.setUsername(authentication.getName());
+			        transactions.setObjectId(objectVersion.getDisplayId());
+			        transactions.setObjectVersion(objectVersion.getObjVer().getVersion());
 			       
-			        
-			        
 			        logTransaction(transactions);
 					
 					return "redirect:completeApplicationForGrant?title="+ga.getTitle()
@@ -344,7 +355,7 @@ public class ApplicationForGrantsController {
 					String dateOfApplication = ServletRequestUtils.getStringParameter(request, "dateOfApp");
 					String fullnameofApplicant = ServletRequestUtils.getStringParameter(request, "fullNameOfApplicant");
 					
-					GrantApplication ga = new GrantApplication();
+					ApplicationForLetterOfAdministration ga = new ApplicationForLetterOfAdministration();
 					ga.setTitle(title);
 					ga.setStatus(status);
 					ga.setApplicationId(applicationId);
@@ -358,7 +369,7 @@ public class ApplicationForGrantsController {
 	 
 	 
 	 
-	 private void uploadfile(GrantApplication ga, MultipartHttpServletRequest request) throws Exception{
+	 private void uploadfile(ApplicationForLetterOfAdministration ga, MultipartHttpServletRequest request) throws Exception{
 		 
 		 String token = AuthenticationUtils.getAuthenticationToken();
 	        
@@ -430,7 +441,7 @@ public class ApplicationForGrantsController {
      }
 	 
 	 
-			 public void createIndexObjectForGrantApplication( GrantApplication ga ) throws Exception{
+			 public ObjectVersion createIndexObjectForGrantApplication( ApplicationForLetterOfAdministration ga ) throws Exception{
 				 
 				 String token = AuthenticationUtils.getAuthenticationToken();
 				 
@@ -479,8 +490,9 @@ public class ApplicationForGrantsController {
 	                    System.out.println("Has errors...");
 	                }
 
-	                System.out.println("ObjectVersion: Title -> " + objectVersion.getTitle() + ", ObjectClass: " + objectVersion.getObjectClass());
+	                System.err.println("ObjectVersion: Title -> " + objectVersion.getTitle() + ", ObjectClass: " + objectVersion.getObjectClass());
 				 
+	                return objectVersion;
 			 }
 			 
 			 

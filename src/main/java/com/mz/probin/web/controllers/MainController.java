@@ -75,5 +75,14 @@ public class MainController {
 		return model;
 
 	}
+	
+	@RequestMapping(value = { "/signup-success" }, method = RequestMethod.GET)
+	public ModelAndView signupSuccess() {
+
+		ModelAndView model = new ModelAndView();
+		model.setViewName("signup-success");
+		return model;
+
+	}
 
 }

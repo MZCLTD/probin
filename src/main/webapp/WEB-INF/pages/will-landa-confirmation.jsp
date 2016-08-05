@@ -98,7 +98,7 @@
     
     <p>
     <button type="submit" Class="btn btn-primary ">Upload Your WILL / L&A for confirmation</button>
-    <button type="reset" Class="btn btn-default">Cancel</button> 
+    <a Class="btn btn-primary " href="welcome">Cancel</a>
     </p>
     <!-- <div class="form-group">
       <div class="col-lg-2 control-label">

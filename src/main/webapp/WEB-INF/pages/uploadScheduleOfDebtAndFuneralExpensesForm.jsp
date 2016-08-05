@@ -60,11 +60,11 @@
     
     <div class="form-group well">
     
-    <div class="form-group">
+    <%-- <div class="form-group">
       <div class="col-lg-10">
         <form:input class="form-control" path="title" placeholder="Application Without WILL Form" type="hidden" />
       </div>
-    </div>
+    </div> --%>
     
     <div class="form-group">
       <div class="col-lg-10">
@@ -99,7 +99,7 @@
     	<i><p>(4) UPLOAD SCHEDULE OF DEBT & FUNERAL EXPENSES FORM</p></i>
     
     	<div class="col-lg-10">
-           inventory form   <form:input cssClass="form-control" type="file" path="multipartFile" /> <br/>
+           SCHEDULE OF DEBT & FUNERAL EXPENSES FORM   <form:input cssClass="form-control" type="file" path="multipartFile" /> <br/>
     	</div>
     	
     </div>

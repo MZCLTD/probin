@@ -11,4 +11,6 @@ public interface UserManager {
 
     String getPasswordByUsername(String username);
 
+	void createOrEditUser(AppUser user);
+
 }

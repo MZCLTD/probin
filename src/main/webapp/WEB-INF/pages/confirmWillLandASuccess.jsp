@@ -54,8 +54,10 @@
 
 <div class="jumbotron">
 
-	<p>Application for confirmation for WILLS and L&A has been done successfully. Your application Id is <b>${customer.applicationId}</b>, 
+	<p>Application for confirmation for WILLS / L&A has been done successfully. Your application Id is <b>${customer.applicationId}</b>, 
 	Please keep this number, it will be used to track the status of your application </p>
+	
+	<p><a href="javascript:window.print()">Print this confirmation</a></p>
 
 </div>
 

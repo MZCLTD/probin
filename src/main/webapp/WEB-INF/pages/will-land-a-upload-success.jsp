@@ -112,7 +112,7 @@
         	<input class="btn btn-primary"  type="submit" value="Close"/>
         </div>
    		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
-   		<span id="status">Not connected</span>
+   		<!-- <span id="status">Not connected</span> -->
       </div> 
       
     
@@ -126,81 +126,3 @@
 </tiles:insertDefinition>
 
 
-<script>
-	
-   // TODO: configure these to match your setup.
-				// NOTE! In real life applications, always use HTTPS to avoid sending clear-text credentials accross the network!
-				//var host = 'http://192.168.2.135/REST';
-				var vault = '{DC7C04CA-C4AE-4256-9295-C8094D063EB8}';
-				var username = 'JohnS';
-				var password = 'password';
-
-				// Register the connect() function below as click handler for the Start button.
-				$('#start-button').click(connect);
-	
-				// Connects (authenticates) to a vault with the username & password given by the user via the HTML
-				// input fields.
-				// Connects (authenticates) to a vault with the username & password given by the user via the HTML
-				// input fields.
-				function connect() {
-					// E.g. "http://localhost/M-Files/REST/server/authenticationtokens"
-					$.post('http://192.168.2.135/REST/server/authenticationtokens.aspx', JSON.stringify({ 
-						//Username: $('#username').val(),				// From user input, e.g. "Test1"
-						//Password: $('#password').val(),				// From user input, e.g. "Test1"
-						Username: username,				// From user input, e.g. "Test1"
-						Password: password,				// From user input, e.g. "Test1"
-						VaultGuid: vault 
-					}))
-					.done(processToken)		// All good, process the authentication token
-					.fail(processError);	// Error occurred, process the error
-				}
-				
-				function processToken(token) {
-				alert("processing token")
-					// AuthenticationUtils token received successfully, store it for later use (the
-					// header will be added to all subsequent REST calls made with jQuery).
-					$.ajaxSetup({ headers: { 'X-Authentication' : token.Value } });
-					
-					// Update UI to show correct status:
-					$('#status').text('Connected, token received');
-					
-					// Continue by fetching e.g. the files in the specified document (notice how the
-					// file ID will be different from document ID):
-					var createObject = function () {
-
-			    // Post the object data.
-			    $.ajax({
-			        url: "http://192.168.2.135/REST/objects/0",
-			        type: "POST",
-			        dataType: "json",
-			        contentType: "application/json",
-			        data: JSON.stringify({
-			            PropertyValues: [{
-			                    // Document name
-			                    PropertyDef: 0,
-			                    TypedValue: { DataType: 1, Value: "Invoice" }
-			                }, {
-			                    // "Single File" property
-			                    PropertyDef: 22,
-			                    TypedValue: { DataType: 8, Value: false }
-			                }, {
-			                    // Class.
-			                    PropertyDef: 100,
-			                    TypedValue: { DataType: 9, Lookup: { Item: 0 } }
-			                }],
-			            Files: []
-			        }),
-			        success: processDocument
-			    });
-};
-				}
-				
-				function processError(err) {
-				alert("processing error token")
-					$('#status').text('Error occurred, please see the browser\'s developer console for details!');
-					console.log('jQuery error object:');	
-					console.log(err);
-				}
-     
- 
-</script>

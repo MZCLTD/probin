@@ -41,13 +41,18 @@ public class MyTransactionsController {
 		System.err.println("WORKFLOW STATE :"+wfs.getWorkflowName());*/
 		
 		
+		
 		String username = ServletRequestUtils.getStringParameter(request, "username");
+		
+		System.err.println("username :"+username);
 		
 		List<Transactionz> transactionsList = genericDao.getEntityListByStringValue("username", username, Transactionz.class);
 		
 		model.addAttribute("transactionsList", transactionsList);
 		
-		System.out.println("Transactions List :"+transactionsList.size());
+		System.err.println("Transactions List :"+transactionsList.size());
+		
+		
 		
 		
 		return "myTransactions";

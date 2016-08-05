@@ -57,18 +57,17 @@
 
   <div class="jumbotron center">
   <p><b>What would you like to do?</b></p>
-  <p><span class="label label-info">Process a Letter of administration</span> |
-  <span class="label label-info">request for a probate</span> |
-   <a href="document-upload"><span class="label label-info">Confirm a Will / Letter of admin</span></a></p>
+  <p><a href="applicationForLetterOfAdministration"><span class="label label-info">Application for letter of administration</span></a> </p>
+  <p><a href="applicationForProbate"> <span class="label label-info">Request for a probate</span></a> </p>
+   <p><a href="document-upload"><span class="label label-info">Confirm a probate / Letter of admin</span></a></p>
   
   <h2>Wills, Probate and Inheritance !</h2>
   
   <blockquote class="blockquote">
   <p>When someone dies, you'll need to get the legal right to deal with their property, money and possessions (their 'estate').</p>
   
-  <p>With this portal, you may be able to apply for a 'grant of representation' - known as 'probate'.
-	You can apply yourself. </p>
-  <p><a class="btn btn-primary btn-lg">Learn how to</a></p>
+  <p> With this PORTAL, you will be able to apply for your <i><b>letter of administration</b>, <b>Probate</b> <b>and their confirmations</b> </i></p>
+  <!-- <p><a class="btn btn-primary btn-lg">Learn how to</a></p> -->
   <!-- <small>Someone famous in <cite title="Source Title">Source Title</cite></small> -->
 </blockquote>
   

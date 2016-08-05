@@ -60,11 +60,11 @@
     
     <div class="form-group well">
     
-    <div class="form-group">
+   <%--  <div class="form-group">
       <div class="col-lg-10">
         <form:input class="form-control" path="title" placeholder="Application Without WILL Form" type="hidden" />
       </div>
-    </div>
+    </div> --%>
     
     <div class="form-group">
       <div class="col-lg-10">
@@ -96,10 +96,10 @@
       </div>
     </div>
     
-    	<i><p>Upload Administration of bond Without WILL From</p></i>
+    	<i><p>UPLOAD ADMINISTRATION OF BOND WITHOUT WILL FORM</p></i>
     
     	<div class="col-lg-10">
-           Administration Without WILL From   <form:input cssClass="form-control" type="file" path="multipartFile" /> <br/>
+           ADMINISTRATION OF BOND WITHOUT WILL FORM  <form:input cssClass="form-control" type="file" path="multipartFile" /> <br/>
     	</div>
     	
     </div>
